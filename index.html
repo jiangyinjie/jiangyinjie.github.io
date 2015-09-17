@@ -61,6 +61,259 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-wordpress" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/wordpress/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/17/wordpress/">wordpress安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>第一步 安装Apache2<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install apache2</span><br></pre></td></tr></table></figure></p>
+<p>第二步 安装PHP模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install php5</span><br></pre></td></tr></table></figure></p>
+<p>第三步 安装Mysql<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install mysql-server&#10;sudo apt-get install mysql-client</span><br></pre></td></tr></table></figure></p>
+<p>第四步 其他模块安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libapache2-mod-php5&#10;sudo apt-get install libapache2-mod-auth-mysql&#10;sudo apt-get install php5-mysql&#10;sudo apt-get install php5-gd</span><br></pre></td></tr></table></figure></p>
+<p>第五步 测试Apache是否正常工作<br>打开浏览器，输入localhost，看看是否有It Works!网页展示。目录为/var/www<br>第六步 修改权限/var/www<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chomod 777 /var/www</span><br></pre></td></tr></table></figure></p>
+<p>第七步 安装phpmyadmin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install phpmyadmin</span><br></pre></td></tr></table></figure></p>
+<p>安装过程中选择apache2，点击确定。下一步选择是要配置数据库，并输入密码。<br>第八步 测试phpmyadmin<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ln -s /usr/share/phpmyadmin /var/www</span><br></pre></td></tr></table></figure></p>
+<p>然后直接运行<a href="http://localhost/phpmyadmin，看有没有数据库管理软件出现。" target="_blank" rel="external">http://localhost/phpmyadmin，看有没有数据库管理软件出现。</a><br>配置过程<br>第一步 启用mod_rewrite模块<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo a2enmod rewrite</span><br></pre></td></tr></table></figure></p>
+<p>重启Apache服务器：sudo /etc/init.d/apache2 restart或者sudo service<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">apache2 restart</span><br></pre></td></tr></table></figure></p>
+<p>第二步 设置Apache支持.htm .html .php<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit /etc/apache2/apache2.conf&#38;</span><br></pre></td></tr></table></figure></p>
+<p>添加以下句子：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .php .htm .html</span><br></pre></td></tr></table></figure></p>
+<p>第三步 测试php网页<br>编辑mysql_test.php代码如下：<br><figure class="highlight php"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">&lt;?php</span></span><br><span class="line"><span class="variable">$link</span> = mysql_connect(<span class="string">"localhost"</span>, <span class="string">"root"</span>, <span class="string">"password"</span>);</span><br><span class="line"><span class="keyword">if</span>(!<span class="variable">$link</span>)</span><br><span class="line"><span class="keyword">die</span>(<span class="string">'Could not connect: '</span> . mysql_error());</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line"><span class="keyword">echo</span> <span class="string">"Mysql 配置正确!"</span>;</span><br><span class="line">mysql_close(<span class="variable">$link</span>);</span><br><span class="line"><span class="preprocessor">?&gt;</span></span><br></pre></td></tr></table></figure></p>
+<p>访问 <a href="http://localhost/mysql_test.php" target="_blank" rel="external">http://localhost/mysql_test.php</a> 显示’Mysql 配置正确‘就代表配置正确。<br>第四步 第三步这里出现了乱码以后解决方法<br>打开配置文件<figure class="highlight"><figcaption><span>gedit</span><a href="/etc/apache2/apache2.conf&```">link</a></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#28155;&#21152;&#22914;&#19979;&#20195;&#30721;&#65306;```AddDefaultCharset UTF-8</span><br></pre></td></tr></table></figure></p>
+<p>到此为止配置OK。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget -c http://wordpress.org/latest.tar.gz&#10;tar xvzf wordpress-2.2.tar.gz&#10;sudo cp -rf  wordpress /var/www</span><br></pre></td></tr></table></figure>
+<p>.htaccess 文件<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;IfModule mod_rewrite.c&#62;&#10;RewriteEngine On&#10;RewriteBase /wordpress/&#10;RewriteRule ^index\.php$ - [L]&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; !-f&#10;RewriteCond %&#123;REQUEST_FILENAME&#125; !-d&#10;RewriteRule . /wordpress/index.php [L]&#10;&#60;/IfModule&#62;</span><br></pre></td></tr></table></figure></p>
+<p>如果域名是主页，需要RewriteBase /wordpress/ 改成RewriteBase /<br>RewriteRule . /wordpress/index.php [L] 改成RewriteRule . /index.php [L]</p>
+<blockquote>
+<p>/etc/apache2/apache2.conf 中 所有AllowOverride None改为 AllowOverride All</p>
+</blockquote>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/wordpress/" data-id="cieo6wljb0001827oai59u5hd" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-linux-jdk" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/linux-jdk/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/17/linux-jdk/">JDK-Linux安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Oracle<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载</a>Linux下的JDK压缩包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv jdk1.7.0_10 /usr/lib/jvm/</span><br></pre></td></tr></table></figure></p>
+<p>配置环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.profile&#10;export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_10&#10;export JRE_HOME=/usr/lib/jvm/jdk1.7.0_10/jre &#10;export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH&#10;export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.profile</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/linux-jdk/" data-id="cieo6wlk20003827oy6p46ku6" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-hexo_install" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/hexo_install/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/17/hexo_install/">Hexo 安装</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>nodejs apt安装（/usr/bin下是nodejs不是node）<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install nodejs&#10;sudo apt-get install npm&#10;sudo npm install hexo&#10;mkdir hexo&#10;cd hexo &#10;hexo init&#10;nmp install</span><br></pre></td></tr></table></figure></p>
+<p>npm install如不能用<br>编辑 ~/.npmrc 加入下面内容<br>registry = <a href="http://registry.cnpmjs.org" target="_blank" rel="external">http://registry.cnpmjs.org</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/hexo_install/" data-id="cieo6wlk40004827ogj5tj7kj" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-android-quickly-tools" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/android-quickly-tools/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/17/android-quickly-tools/">快速提高Android开发效率的工具</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>##1.查找优秀的参考工程</p>
+<blockquote>
+<p>codota是一个查找可供参考的Android工程的网站，它的爬虫已经采集了将近7百万个工程。比如我们想要写一段Android中检测网络可用性的代码，我们只需要在搜索框中输入network，就会找到已经存在的优秀工程中关于这一逻辑的具体实现，确实为我们编码节省不少重复造轮子的成本。另外，codeta还有支持Android Studio的插件，让查找源码更快捷。</p>
+</blockquote>
+<p>地址:<a href="http://www.codota.com/" target="_blank" rel="external">codota,Find Great Code Examples</a></p>
+<p>##2.Android军火库</p>
+<p>android-arsenal，中文意思 Android军火库，里面收集了Android中的SDK，Library以及Android开发的工具，满满的干货。有木有一种想见恨晚的赶脚，快来加入书签吧。</p>
+<p>地址:<a href="http://android-arsenal.com/" target="_blank" rel="external">The Android Arsenal – A categorized directory of free libraries and tools for Android</a></p>
+<p>##3.在线反编译</p>
+<p>当你还在花时间切换不同的反编译工具时，一个在线反编译网站应运而生，它就是Android APK Decompiler，只需上传要反编译的apk包，无需多时，源码可以下载下来了。</p>
+<p>地址：<a href="http://www.decompileandroid.com/" target="_blank" rel="external">Android APK Decompiler</a></p>
+<p>##4.Grepcode</p>
+<p>grepcode.com是一个Java源码搜索引擎，对于查看Android代码也不例外。并且支持多个API版本快速切换查看。如果你的IDE关联本地代码后，让机器累的喘不过气来，那么就试一试这个在线的工具吧。</p>
+<p>地址：<a href="http://grepcode.com/search/?query=google+android&amp;entity=project" target="_blank" rel="external">grepcode.com</a></p>
+<p>##5.Android Asset Studio</p>
+<p>这是一个神奇的网页，里面包含了多个与资源相关的在线工具，比如icon制作（桌面icon，通知栏icon等），9patch图片制作，ActionBar样式等相关的工具。当你有资源相关的工作时，不妨试一试这个网页工具。</p>
+<p>地址：<a href="http://romannurik.github.io/AndroidAssetStudio/index.html" target="_blank" rel="external">Android Asset Studio</a></p>
+<p>##6.快速下载Google Play应用</p>
+<p>由于一些你懂的原因，国内无法直接访问Google Play商店。而且下载Google Play商店还是需要登陆谷歌账户，以国内的网络，下载成功简直是太困难了。<br>这里介绍一款不需要账户国内即可访问的Web工具。可以通过输入包名或者Google Play地址即可下载。</p>
+<p>地址:<a href="http://apps.evozi.com/apk-downloader/" target="_blank" rel="external">APK Downloader</a></p>
+<p>##7.进制转换</p>
+<p>Android中所有的资源都有一个对应的资源ID，资源ID的类型为16进制的整数。有些时候特殊的场合处理资源ID，为了调试需要进行进制转换，比如16进制转常用的10进制。不用自己算，使用下面的工具就可以轻松搞定。</p>
+<p>地址：<a href="http://www.binaryhexconverter.com/hex-to-decimal-converter" target="_blank" rel="external">Hex To Decimal Converter</a></p>
+<p>#8.UI相关必备</p>
+<p>通常UI设计师都会给开花童鞋色值，当疏忽的时候，我们可以使用截图软件得到10进制的三个值，然后将其转换成色值。这里有一个便捷的RGB工具。</p>
+<p>地址：<a href="http://www.colorspire.com/rgb-color-wheel/" target="_blank" rel="external">RGB Color Wheel</a></p>
+<p>##9.JSON格式化</p>
+<p>在CS应用中，客户端和服务器端通常使用json作为数据交换格式。当分析的时候，我们必然是将raw数据转换成可读性更高的。快来使用这个强大的工具吧。</p>
+<p>地址：<a href="http://json.parser.online.fr/" target="_blank" rel="external">JSON Parser</a></p>
+<p>查看HTML5,JS,CSS可用情况</p>
+<p>caniuse.com是一个检测HTML5，JS，CSS在各个浏览器平台是否可用的web工具。便于我们了解前端方案是否在目标设备上是否有效。</p>
+<p>地址：<a href="http://caniuse.com/#search=queryselector" target="_blank" rel="external">caniuse.com</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/android-quickly-tools/" data-id="cieo6wlka0006827oxbisozcx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-Maven-Nexus" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/Maven-Nexus/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/09/17/Maven-Nexus/">Maven-Nexus</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下载Nexus <a href="http://nexus.sonatype.org/downloads/。" target="_blank" rel="external">http://nexus.sonatype.org/downloads/。</a></p>
+<h2 id="1-配置nexus">1.配置nexus</h2><blockquote>
+<p>首先登录，默认地址<a href="http://localhost:8081/nexus/，默认用户名密码为admin/admin123" target="_blank" rel="external">http://localhost:8081/nexus/，默认用户名密码为admin/admin123</a>. nexus默认是关闭远程索引下载功能的。开启的方式：<br>点击Administration菜单下面的Repositories，将这三个仓库Apache Snapshots，Codehaus Snapshots，Maven Central 的 Download Remote Indexes修改为true。然后在这三个仓库上分别右键，选择Re-index，这样Nexus就会去下载远程的索引文件。 </p>
+<h2 id="2-管理仓库">2.管理仓库</h2><pre><code>以管理员用户登陆然后点击左边导航菜单<span class="keyword">Repositories</span>。下面的<span class="keyword">Repositories</span>。Nexus提供了三种不同的仓库。 
+</code></pre><h3 id="(1)_代理仓库">(1) 代理仓库</h3><pre><code>一个代理仓库是对远程仓库的一个代理。默认情况下，Nexus自带了如下配置的代理仓库： 
+</code></pre><p>Apache Snapshots<br>这个仓库包含了来自于Apache软件基金会的快照版本。<a href="http://people.apache.org/repo/m2-snapshot-repository" target="_blank" rel="external">http://people.apache.org/repo/m2-snapshot-repository</a><br>Codehaus Snapshots<br>这个仓库包含了来自于Codehaus的快照版本。 <a href="http://snapshots.repository.codehaus.org/" target="_blank" rel="external">http://snapshots.repository.codehaus.org/</a><br>Central Maven Repository<br>这是中央Maven仓库（发布版本）。 <a href="http://repo1.maven.org/maven2/" target="_blank" rel="external">http://repo1.maven.org/maven2/</a> </p>
+<p>###(2)宿主仓库<br>一个宿主仓库是由Nexus托管的仓库。Maven自带了如下配置的宿主仓库。<br>3rd Party<br>这个宿主仓库应该用来存储在公共Maven仓库中找不到的第三方依赖。这种依赖的样例有：你组织使用的，商业的，私有的类库如Oracle JDBC驱动。<br>Releases<br>这个宿主仓库是你组织公布内部发布版本的地方。<br>Snapshots<br>这个宿主仓库是你组织发布内部快照版本的地方。 </p>
+<p>###(3)虚拟仓库<br>一个虚拟仓库作为Maven 1的适配器存在。Nexus自带了一个central-m1虚拟仓库 </p>
+<p>##3. 管理组<br>组是Nexus一个强大的特性，它允许你在一个单独的URL中组合多个仓库。Nexus自带了两个组：public和public-snapshots。public组中组合了三个宿主仓库：3rd Party, Releases, 和Snapshots，还有中央Maven仓库。而public-snapshots组中组合了Apache Snapshots和Codehaus Snapshots仓库。 </p>
+<ol>
+<li>配置maven<br>要让maven使用Nexus作为仓库，要修改~/.m2/settings.xml.<br>Xml代码 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;profiles&#62; &#10;   &#60;profile&#62; &#10;     &#60;id&#62;nexus&#60;/id&#62; &#10;     &#60;repositories&#62; &#10;       &#60;repository&#62; &#10;           &#60;id&#62;nexus&#60;/id&#62; &#10;           &#60;name&#62;local private nexus&#60;/name&#62; &#10;           &#60;url&#62;http://localhost:8081/nexus/content/groups/public&#60;/url&#62; &#10;       &#60;/repository&#62; &#10;     &#60;/repositories&#62; &#10;   &#60;/profile&#62; &#10;   &#60;profile&#62; &#10;     &#60;id&#62;nexus-snapshots&#60;/id&#62; &#10;     &#60;repositories&#62; &#10;       &#60;repository&#62; &#10;           &#60;id&#62;nexus-snapshots&#60;/id&#62; &#10;           &#60;name&#62;local private nexus snapshots&#60;/name&#62; &#10;           &#60;url&#62;http://localhost:8081/nexus/content/groups/public-snapshots&#60;/url&#62; &#10;       &#60;/repository&#62; &#10;     &#60;/repositories&#62; &#10;   &#60;/profile&#62; &#10;&#60;/profiles&#62;&#10;&#60;activeProfiles&#62; &#10;    &#60;activeProfile&#62;nexus&#60;/activeProfile&#62; &#10;    &#60;activeProfile&#62;nexus-snapshots&#60;/activeProfile&#62; &#10;&#60;/activeProfiles&#62;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>##5.部署构件至Nexus<br>   要部署构件至Nexus，在distributionManagement中提供仓库URL，然后运行mvn deploy。Maven会通过一个简单的HTTP PUT将项目<code>POM</code>和构件推入至你的Nexus安装。需要配置你项目POM中distributionManagement部分的repository。<br>Xml代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;distributionManagement&#62; &#10;&#60;repository&#62; &#10;    &#60;id&#62;releases&#60;/id&#62; &#10;    &#60;name&#62;Internal Releases&#60;/name&#62; &#10;    &#60;url&#62;http://localhost:8081/nexus/content/repositories/releases&#60;/url&#62; &#10;&#60;/repository&#62; &#10;&#60;snapshotRepository&#62; &#10;    &#60;id&#62;Snapshots&#60;/id&#62; &#10;    &#60;name&#62;Internal Snapshots&#60;/name&#62; &#10;    &#60;url&#62;http://localhost:8081/nexus/content/repositories/snapshots&#60;/url&#62; &#10;&#60;/snapshotRepository&#62; &#10;&#60;/distributionManagement&#62;</span><br></pre></td></tr></table></figure></p>
+<p>这样还没完，这时如果部署会报错，还要在～/.m2/settings.xml中添加如下的服务器登录信息：<br>Xml代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;server&#62; &#10;&#60;id&#62;releases&#60;/id&#62; &#10;&#60;username&#62;admin&#60;/username&#62; &#10;&#60;password&#62;admin123&#60;/password&#62; &#10;&#60;/server&#62; &#10;&#60;server&#62; &#10;&#60;id&#62;Snapshots&#60;/id&#62; &#10;&#60;username&#62;admin&#60;/username&#62; &#10;&#60;password&#62;admin123&#60;/password&#62; &#10;&#60;/server&#62;</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-Nexus监听端口">6.Nexus监听端口</h2><p>默认情况下，Nexus监听端口8081。你可以更改这个端口，通过更改${NEXUS_HOME}/conf/plexus.properties的值，为此，停止Nexus，更改文件中applicationPort的值，然后重启Nexus。</p>
+<h2 id="7-私服仓库设置">7.私服仓库设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;mirrors&#62;&#10;    &#60;mirror&#62;&#10;      &#60;id&#62;nexus&#60;/id&#62;&#10;      &#60;mirrorOf&#62;central&#60;/mirrorOf&#62;&#10;      &#60;name&#62;central repository.&#60;/name&#62;&#10;      &#60;url&#62;http://ip:8081/nexus/content/groups/public&#60;/url&#62;&#10;    &#60;/mirror&#62;&#10;&#60;/mirrors&#62;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/Maven-Nexus/" data-id="cieo6wlkf0008827os6x8xvug" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-linux_diretory_structure" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2015/09/07/linux_diretory_structure/" class="article-date">
@@ -88,7 +341,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.jiangyinjie.com/2015/09/07/linux_diretory_structure/" data-id="ciea0o6ff0001op7oqsq2cigc" class="article-share-link">Share</a>
+      <a data-url="http://www.jiangyinjie.com/2015/09/07/linux_diretory_structure/" data-id="cieo6wljz0002827oq0i7ht5k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -133,7 +386,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.jiangyinjie.com/2015/09/07/hello-world/" data-id="ciea0o6g20002op7o99fe2ex9" class="article-share-link">Share</a>
+      <a data-url="http://www.jiangyinjie.com/2015/09/07/hello-world/" data-id="cieo6wlk80005827ovkks9r2k" class="article-share-link">Share</a>
       
       
     </footer>
@@ -187,7 +440,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.jiangyinjie.com/2015/09/07/Ubuntu_FTP/" data-id="ciea0o6g50003op7oi3c5czzt" class="article-share-link">Share</a>
+      <a data-url="http://www.jiangyinjie.com/2015/09/07/Ubuntu_FTP/" data-id="cieo6wlkc0007827olxkiiiyo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -212,7 +465,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">3</span></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">8</span></li></ul>
     </div>
   </div>
 
@@ -224,15 +477,23 @@
       <ul>
         
           <li>
-            <a href="/2015/09/07/linux_diretory_structure/">linux 目录结构</a>
+            <a href="/2015/09/17/wordpress/">wordpress安装</a>
           </li>
         
           <li>
-            <a href="/2015/09/07/hello-world/">Hello World</a>
+            <a href="/2015/09/17/linux-jdk/">JDK-Linux安装</a>
           </li>
         
           <li>
-            <a href="/2015/09/07/Ubuntu_FTP/">Ubuntu FTP</a>
+            <a href="/2015/09/17/hexo_install/">Hexo 安装</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/android-quickly-tools/">快速提高Android开发效率的工具</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/Maven-Nexus/">Maven-Nexus</a>
           </li>
         
       </ul>

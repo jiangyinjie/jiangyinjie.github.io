@@ -3,18 +3,21 @@
 <head>
   <meta charset="utf-8">
   
-  <title>Hexo</title>
+  <title>JDK-Linux安装 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="ddd">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://www.jiangyinjie.com/README.html">
+  <meta name="description" content="Oracle下载Linux下的JDK压缩包1sudo mv jdk1.7.0_10 /usr/lib/jvm/
+配置环境变量1sudo gedit ~/.profile&amp;#10;export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_10&amp;#10;export JRE_HOME=/usr/lib/jvm/jdk1.7.0_10/jre &amp;#10;export CLASSPAT">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JDK-Linux安装">
+<meta property="og:url" content="http://www.jiangyinjie.com/2015/09/17/linux-jdk/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="ddd">
-<meta property="og:updated_time" content="2015-09-07T14:08:26.320Z">
+<meta property="og:description" content="Oracle下载Linux下的JDK压缩包1sudo mv jdk1.7.0_10 /usr/lib/jvm/
+配置环境变量1sudo gedit ~/.profile&amp;#10;export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_10&amp;#10;export JRE_HOME=/usr/lib/jvm/jdk1.7.0_10/jre &amp;#10;export CLASSPAT">
+<meta property="og:updated_time" content="2015-09-17T12:23:59.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
-<meta name="twitter:description" content="ddd">
+<meta name="twitter:title" content="JDK-Linux安装">
+<meta name="twitter:description" content="Oracle下载Linux下的JDK压缩包1sudo mv jdk1.7.0_10 /usr/lib/jvm/
+配置环境变量1sudo gedit ~/.profile&amp;#10;export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_10&amp;#10;export JRE_HOME=/usr/lib/jvm/jdk1.7.0_10/jre &amp;#10;export CLASSPAT">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -60,30 +63,60 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main"><article id="page-undefined" class="article article-type-page" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-linux-jdk" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/README.html" class="article-date">
-  <time datetime="2015-09-07T14:08:26.320Z" itemprop="datePublished">2015-09-07</time>
+    <a href="/2015/09/17/linux-jdk/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      JDK-Linux安装
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>ddd</p>
-
+        <p>Oracle<a href="http://www.oracle.com/technetwork/java/javase/downloads/index.html" target="_blank" rel="external">下载</a>Linux下的JDK压缩包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo mv jdk1.7.0_10 /usr/lib/jvm/</span><br></pre></td></tr></table></figure></p>
+<p>配置环境变量<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo gedit ~/.profile&#10;export JAVA_HOME=/usr/lib/jvm/jdk1.7.0_10&#10;export JRE_HOME=/usr/lib/jvm/jdk1.7.0_10/jre &#10;export CLASSPATH=.:$JAVA_HOME/lib/dt.jar:$JAVA_HOME/lib/tools.jar:$JAVA_HOME/lib:$JRE_HOME/lib:$CLASSPATH&#10;export PATH=$JAVA_HOME/bin:$PATH</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ source ~/.profile</span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://www.jiangyinjie.com/README.html" data-id="cieo6wlia0000827oh6xhlo6u" class="article-share-link">Share</a>
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/linux-jdk/" data-id="cieo6wlk20003827oy6p46ku6" class="article-share-link">Share</a>
       
       
     </footer>
   </div>
   
     
+<nav id="article-nav">
+  
+    <a href="/2015/09/17/wordpress/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          wordpress安装
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/17/hexo_install/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">Hexo 安装</div>
+    </a>
+  
+</nav>
+
   
 </article>
 

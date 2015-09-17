@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>Maven-Nexus | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="下载Nexus http://nexus.sonatype.org/downloads/。
+1.配置nexus
+首先登录，默认地址http://localhost:8081/nexus/，默认用户名密码为admin/admin123. nexus默认是关闭远程索引下载功能的。开启的方式：点击Administration菜单下面的Repositories，将这三个仓库Apache Snapshots">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Maven-Nexus">
+<meta property="og:url" content="http://www.jiangyinjie.com/2015/09/17/Maven-Nexus/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="下载Nexus http://nexus.sonatype.org/downloads/。
+1.配置nexus
+首先登录，默认地址http://localhost:8081/nexus/，默认用户名密码为admin/admin123. nexus默认是关闭远程索引下载功能的。开启的方式：点击Administration菜单下面的Repositories，将这三个仓库Apache Snapshots">
+<meta property="og:updated_time" content="2015-09-17T12:23:59.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Maven-Nexus">
+<meta name="twitter:description" content="下载Nexus http://nexus.sonatype.org/downloads/。
+1.配置nexus
+首先登录，默认地址http://localhost:8081/nexus/，默认用户名密码为admin/admin123. nexus默认是关闭远程索引下载功能的。开启的方式：点击Administration菜单下面的Repositories，将这三个仓库Apache Snapshots">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  
+
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://www.jiangyinjie.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-Maven-Nexus" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2015/09/17/Maven-Nexus/" class="article-date">
+  <time datetime="2015-09-17T12:23:59.000Z" itemprop="datePublished">2015-09-17</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      Maven-Nexus
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>下载Nexus <a href="http://nexus.sonatype.org/downloads/。" target="_blank" rel="external">http://nexus.sonatype.org/downloads/。</a></p>
+<h2 id="1-配置nexus">1.配置nexus</h2><blockquote>
+<p>首先登录，默认地址<a href="http://localhost:8081/nexus/，默认用户名密码为admin/admin123" target="_blank" rel="external">http://localhost:8081/nexus/，默认用户名密码为admin/admin123</a>. nexus默认是关闭远程索引下载功能的。开启的方式：<br>点击Administration菜单下面的Repositories，将这三个仓库Apache Snapshots，Codehaus Snapshots，Maven Central 的 Download Remote Indexes修改为true。然后在这三个仓库上分别右键，选择Re-index，这样Nexus就会去下载远程的索引文件。 </p>
+<h2 id="2-管理仓库">2.管理仓库</h2><pre><code>以管理员用户登陆然后点击左边导航菜单<span class="keyword">Repositories</span>。下面的<span class="keyword">Repositories</span>。Nexus提供了三种不同的仓库。 
+</code></pre><h3 id="(1)_代理仓库">(1) 代理仓库</h3><pre><code>一个代理仓库是对远程仓库的一个代理。默认情况下，Nexus自带了如下配置的代理仓库： 
+</code></pre><p>Apache Snapshots<br>这个仓库包含了来自于Apache软件基金会的快照版本。<a href="http://people.apache.org/repo/m2-snapshot-repository" target="_blank" rel="external">http://people.apache.org/repo/m2-snapshot-repository</a><br>Codehaus Snapshots<br>这个仓库包含了来自于Codehaus的快照版本。 <a href="http://snapshots.repository.codehaus.org/" target="_blank" rel="external">http://snapshots.repository.codehaus.org/</a><br>Central Maven Repository<br>这是中央Maven仓库（发布版本）。 <a href="http://repo1.maven.org/maven2/" target="_blank" rel="external">http://repo1.maven.org/maven2/</a> </p>
+<p>###(2)宿主仓库<br>一个宿主仓库是由Nexus托管的仓库。Maven自带了如下配置的宿主仓库。<br>3rd Party<br>这个宿主仓库应该用来存储在公共Maven仓库中找不到的第三方依赖。这种依赖的样例有：你组织使用的，商业的，私有的类库如Oracle JDBC驱动。<br>Releases<br>这个宿主仓库是你组织公布内部发布版本的地方。<br>Snapshots<br>这个宿主仓库是你组织发布内部快照版本的地方。 </p>
+<p>###(3)虚拟仓库<br>一个虚拟仓库作为Maven 1的适配器存在。Nexus自带了一个central-m1虚拟仓库 </p>
+<p>##3. 管理组<br>组是Nexus一个强大的特性，它允许你在一个单独的URL中组合多个仓库。Nexus自带了两个组：public和public-snapshots。public组中组合了三个宿主仓库：3rd Party, Releases, 和Snapshots，还有中央Maven仓库。而public-snapshots组中组合了Apache Snapshots和Codehaus Snapshots仓库。 </p>
+<ol>
+<li>配置maven<br>要让maven使用Nexus作为仓库，要修改~/.m2/settings.xml.<br>Xml代码 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;profiles&#62; &#10;   &#60;profile&#62; &#10;     &#60;id&#62;nexus&#60;/id&#62; &#10;     &#60;repositories&#62; &#10;       &#60;repository&#62; &#10;           &#60;id&#62;nexus&#60;/id&#62; &#10;           &#60;name&#62;local private nexus&#60;/name&#62; &#10;           &#60;url&#62;http://localhost:8081/nexus/content/groups/public&#60;/url&#62; &#10;       &#60;/repository&#62; &#10;     &#60;/repositories&#62; &#10;   &#60;/profile&#62; &#10;   &#60;profile&#62; &#10;     &#60;id&#62;nexus-snapshots&#60;/id&#62; &#10;     &#60;repositories&#62; &#10;       &#60;repository&#62; &#10;           &#60;id&#62;nexus-snapshots&#60;/id&#62; &#10;           &#60;name&#62;local private nexus snapshots&#60;/name&#62; &#10;           &#60;url&#62;http://localhost:8081/nexus/content/groups/public-snapshots&#60;/url&#62; &#10;       &#60;/repository&#62; &#10;     &#60;/repositories&#62; &#10;   &#60;/profile&#62; &#10;&#60;/profiles&#62;&#10;&#60;activeProfiles&#62; &#10;    &#60;activeProfile&#62;nexus&#60;/activeProfile&#62; &#10;    &#60;activeProfile&#62;nexus-snapshots&#60;/activeProfile&#62; &#10;&#60;/activeProfiles&#62;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>##5.部署构件至Nexus<br>   要部署构件至Nexus，在distributionManagement中提供仓库URL，然后运行mvn deploy。Maven会通过一个简单的HTTP PUT将项目<code>POM</code>和构件推入至你的Nexus安装。需要配置你项目POM中distributionManagement部分的repository。<br>Xml代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;distributionManagement&#62; &#10;&#60;repository&#62; &#10;    &#60;id&#62;releases&#60;/id&#62; &#10;    &#60;name&#62;Internal Releases&#60;/name&#62; &#10;    &#60;url&#62;http://localhost:8081/nexus/content/repositories/releases&#60;/url&#62; &#10;&#60;/repository&#62; &#10;&#60;snapshotRepository&#62; &#10;    &#60;id&#62;Snapshots&#60;/id&#62; &#10;    &#60;name&#62;Internal Snapshots&#60;/name&#62; &#10;    &#60;url&#62;http://localhost:8081/nexus/content/repositories/snapshots&#60;/url&#62; &#10;&#60;/snapshotRepository&#62; &#10;&#60;/distributionManagement&#62;</span><br></pre></td></tr></table></figure></p>
+<p>这样还没完，这时如果部署会报错，还要在～/.m2/settings.xml中添加如下的服务器登录信息：<br>Xml代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;server&#62; &#10;&#60;id&#62;releases&#60;/id&#62; &#10;&#60;username&#62;admin&#60;/username&#62; &#10;&#60;password&#62;admin123&#60;/password&#62; &#10;&#60;/server&#62; &#10;&#60;server&#62; &#10;&#60;id&#62;Snapshots&#60;/id&#62; &#10;&#60;username&#62;admin&#60;/username&#62; &#10;&#60;password&#62;admin123&#60;/password&#62; &#10;&#60;/server&#62;</span><br></pre></td></tr></table></figure></p>
+<h2 id="6-Nexus监听端口">6.Nexus监听端口</h2><p>默认情况下，Nexus监听端口8081。你可以更改这个端口，通过更改${NEXUS_HOME}/conf/plexus.properties的值，为此，停止Nexus，更改文件中applicationPort的值，然后重启Nexus。</p>
+<h2 id="7-私服仓库设置">7.私服仓库设置</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#60;mirrors&#62;&#10;    &#60;mirror&#62;&#10;      &#60;id&#62;nexus&#60;/id&#62;&#10;      &#60;mirrorOf&#62;central&#60;/mirrorOf&#62;&#10;      &#60;name&#62;central repository.&#60;/name&#62;&#10;      &#60;url&#62;http://ip:8081/nexus/content/groups/public&#60;/url&#62;&#10;    &#60;/mirror&#62;&#10;&#60;/mirrors&#62;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://www.jiangyinjie.com/2015/09/17/Maven-Nexus/" data-id="cieo6wlkf0008827os6x8xvug" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/09/17/android-quickly-tools/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          快速提高Android开发效率的工具
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/09/07/linux_diretory_structure/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">linux 目录结构</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  
+    
+  
+    
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2015/09/">September 2015</a><span class="archive-list-count">8</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2015/09/17/wordpress/">wordpress安装</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/linux-jdk/">JDK-Linux安装</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/hexo_install/">Hexo 安装</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/android-quickly-tools/">快速提高Android开发效率的工具</a>
+          </li>
+        
+          <li>
+            <a href="/2015/09/17/Maven-Nexus/">Maven-Nexus</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2015 蒋殷杰<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/script.js" type="text/javascript"></script>
+
+  </div>
+</body>
+</html>
